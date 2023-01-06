@@ -18,12 +18,16 @@ if (navigator.serviceWorker) {
 /**
  * This function displays an alert.
  */
-function myButtonClicked() {
-  // input
-  const height = parseFloat(document.getElementById("height").value)
+window.onload = function () {
+  const params = new URLSearchParams(document.location.search)
 
-  // process
-  const volume = 2
-  // output
-  document.getElementById("volume").innerHTML = "Volume is: " + volume + "mm³"
+  const radius = params.get("radius")
+  console.log(radius)
+
+  const volume = (4.0 / 3.0) * Math.PI * Math.pow(radius, 3)
+  const dimensions = "<ul>\n<li>radius=" + radius + "</li>\n</ul>"
+
+  document.getElementById("dimension").innerHTML = dimensions
+  document.getElementById("volume").innerHTML =
+    "Volume is: " + volume.toFixed(2) + " units³"
 }
